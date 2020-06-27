@@ -12,7 +12,7 @@ else:
     _ace = st.declare_component("ace", path=build_dir)
 
 
-def ace(
+def st_ace(
     value="",
     placeholder="",
     height=500,

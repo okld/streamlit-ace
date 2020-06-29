@@ -1,6 +1,6 @@
 # Streamlit Ace
 
-Streamlit component for React Ace (https://github.com/Ghasel/streamlit-component-ace).
+[Streamlit](https://www.streamlit.io/) component for [React Ace](https://github.com/Ghasel/streamlit-ace).
 
 ## Installation
 
@@ -12,4 +12,8 @@ pip install https://github.com/Ghasel/streamlit-ace/releases/download/v0.0.1/str
 
 ## Demo
 
-A demo is available in the `examples` folder.
+To test this component, you can run the demo script:
+
+```sh
+streamlit run https://raw.githubusercontent.com/Ghasel/streamlit-ace/master/examples/streamlit_ace_demo.py
+```

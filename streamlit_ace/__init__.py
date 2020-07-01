@@ -1,15 +1,14 @@
 import os
-import streamlit as st
-from collections import namedtuple
+import streamlit.components.v1 as components
 
 _RELEASE = True
 
 if not _RELEASE:
-    _ace = st.declare_component("ace", url="http://localhost:3001")
+    _ace = components.declare_component("ace", url="http://localhost:3001")
 else:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
     build_dir = os.path.join(parent_dir, "frontend/build")
-    _ace = st.declare_component("ace", path=build_dir)
+    _ace = components.declare_component("ace", path=build_dir)
 
 
 def st_ace(
@@ -118,8 +117,10 @@ def st_ace(
 
 
 if not _RELEASE:
+    import streamlit as st
+
     st.sidebar.title("Ace editor")
-    event = ace(
+    event = st_ace(
         placeholder=st.sidebar.text_input("Editor placeholder.", value="Some placeholder."),
         language=st.sidebar.selectbox("Language mode.", options=[
             "abap", "abc", "actionscript", "ada", "alda", "apache_conf", "apex", "applescript", "aql", 

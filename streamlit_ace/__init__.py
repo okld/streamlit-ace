@@ -1,15 +1,14 @@
 import os
-import streamlit as st
-from collections import namedtuple
+import streamlit.components.v1 as components
 
 _RELEASE = True
 
 if not _RELEASE:
-    _ace = st.declare_component("ace", url="http://localhost:3001")
+    _ace = components.declare_component("ace", url="http://localhost:3001")
 else:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
     build_dir = os.path.join(parent_dir, "frontend/build")
-    _ace = st.declare_component("ace", path=build_dir)
+    _ace = components.declare_component("ace", path=build_dir)
 
 
 def st_ace(
@@ -27,8 +26,8 @@ def st_ace(
     show_gutter=True,
     show_print_margin=False,
     readonly=False,
-    annotations=[],
-    markers=[],
+    annotations=None,
+    markers=None,
     key=None
 ):
     """Display an Ace editor.
@@ -50,7 +49,7 @@ def st_ace(
     value : any
         The text value of this widget when it first renders. This will be
         cast to str internally.
-    placeholder: any
+    placeholder : any
         The text value of this widget when the editor is empty. It will be
         cast to str internally.
     height : int or None
@@ -79,7 +78,7 @@ def st_ace(
         Enable line wrapping. If None, a default value is used.
     readonly : bool
         Make the editor read only.
-    annotation : list or None
+    annotations : list or None
         Anootations to show in the editor.
     markers : list or None
         Markers to show in the editor.
@@ -95,6 +94,11 @@ def st_ace(
         The current content of the ace editor widget.
 
     """
+    if annotations is None:
+        annotations = []
+    if markers is None:
+        markers = []
+
     return _ace(
         defaultValue=str(value),
         placeholder=str(placeholder),
@@ -113,13 +117,16 @@ def st_ace(
         annotations=annotations,
         markers=markers,
         name=key or "ace-editor",
-        key=key or "ace-editor"
+        key=key,
+        default=str(value),
     )
 
 
 if not _RELEASE:
+    import streamlit as st
+
     st.sidebar.title("Ace editor")
-    event = ace(
+    event = st_ace(
         placeholder=st.sidebar.text_input("Editor placeholder.", value="Some placeholder."),
         language=st.sidebar.selectbox("Language mode.", options=[
             "abap", "abc", "actionscript", "ada", "alda", "apache_conf", "apex", "applescript", "aql", 

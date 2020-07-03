@@ -164,6 +164,7 @@ if not _RELEASE:
         show_print_margin=st.sidebar.checkbox("Show print margin.", value=True),
         wrap=st.sidebar.checkbox("Wrap enabled.", value=False),
         readonly=st.sidebar.checkbox("Read-only.", value=False, key="ace-editor"),
+        key="ace-editor"
     )
 
     st.write(event)

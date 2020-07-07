@@ -17,3 +17,5 @@ To test this component, you can run the demo script:
 ```sh
 streamlit run https://raw.githubusercontent.com/Ghasel/streamlit-ace/master/examples/streamlit_ace_demo.py
 ```
+
+![Demo](examples/streamlit_ace_demo.gif)

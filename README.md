@@ -1,13 +1,13 @@
 # Streamlit Ace
 
-[Streamlit](https://www.streamlit.io/) component for [React Ace](https://github.com/Ghasel/streamlit-ace).
+[React Ace](https://github.com/securingsincity/react-ace) component for [Streamlit](https://www.streamlit.io/).
 
 ## Installation
 
 In a python virtual environment, run:
 
 ```sh
-pip install https://github.com/Ghasel/streamlit-ace/releases/download/v0.0.1/streamlit_ace-0.0.1-py3-none-any.whl
+pip install streamlit-ace
 ```
 
 ## Demo

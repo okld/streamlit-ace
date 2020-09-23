@@ -15,7 +15,7 @@ def readme() -> str:
 
 setuptools.setup(
     name="streamlit-ace",
-    version="0.0.1",
+    version="0.0.2",
     author="Synode",
     author_email="",
     description="React Ace component for Streamlit",

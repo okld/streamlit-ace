@@ -181,4 +181,3 @@ if not _RELEASE:
     )
 
     st.write(content)
-    st.text_area("Helo")

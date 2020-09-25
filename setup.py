@@ -5,9 +5,11 @@ import setuptools
 
 def readme() -> str:
     """Utility function to read the README file.
+
     Used for the long_description.  It's nice, because now 1) we have a top
     level README file and 2) it's easier to type in the README file than to put
     a raw string in below.
+
     :return: content of README.md
     """
     return open(join(dirname(__file__), "README.md")).read()
@@ -15,7 +17,7 @@ def readme() -> str:
 
 setuptools.setup(
     name="streamlit-ace",
-    version="0.0.2",
+    version="0.0.3",
     author="Synode",
     author_email="",
     description="React Ace component for Streamlit",

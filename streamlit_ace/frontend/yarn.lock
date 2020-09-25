@@ -10013,6 +10013,17 @@ stream-shift@^1.0.0:
   resolved "https://registry.yarnpkg.com/stream-shift/-/stream-shift-1.0.1.tgz#d7088281559ab2778424279b0877da3c392d5a3d"
   integrity sha512-AiisoFqQ0vbGcZgQPY1cdP2I76glaVA/RauYR4G4thNFgkTqr90yXTo4LYX60Jl+sIlPNHHdGSwo01AvbKUSVQ==
 
+streamlit-component-lib@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/streamlit-component-lib/-/streamlit-component-lib-1.1.1.tgz#afb705e9ada74d1d0c91d8139cc58a6ad024c5d5"
+  integrity sha512-Qo3ngSZwiC531UzHvbH+Cn46Ve4N/JXrmMPXcpx/D9fpO2WQhqDOIEgg9dE72CKj5cw6Q104DD+cCnUeazfDtg==
+  dependencies:
+    apache-arrow "^0.17.0"
+    event-target-shim "^5.0.1"
+    hoist-non-react-statics "^3.3.2"
+    react "^16.13.1"
+    react-dom "^16.13.1"
+
 strict-uri-encode@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-1.1.0.tgz#279b225df1d582b1f54e65addd4352e18faa0713"

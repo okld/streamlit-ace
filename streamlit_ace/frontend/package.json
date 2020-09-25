@@ -21,6 +21,7 @@
     "react-ace": "^9.0.0",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "streamlit-component-lib": "^1.1.1",
     "typescript": "~3.7.2"
   },
   "scripts": {

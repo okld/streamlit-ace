@@ -23,7 +23,7 @@ setuptools.setup(
     description="React Ace component for Streamlit",
     long_description=readme(),
     long_description_content_type="text/markdown",
-    url="https://github.com/Ghasel/streamlit-ace",
+    url="https://github.com/okld/streamlit-ace",
     packages=setuptools.find_packages(),
     include_package_data=True,
     classifiers=[],

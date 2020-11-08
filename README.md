@@ -12,10 +12,8 @@ pip install streamlit-ace
 
 ## Demo
 
-To test this component, you can run the demo script:
+To test this component, click this button:
 
-```sh
-streamlit run https://raw.githubusercontent.com/okld/streamlit-ace/master/examples/streamlit_ace_demo.py
-```
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/treuille/streamlit-ace/demo/)
 
-![Demo](https://raw.githubusercontent.com/okld/streamlit-ace/master/examples/streamlit_ace_demo.gif)
+[![Demo Image](https://raw.githubusercontent.com/okld/streamlit-ace/master/examples/streamlit_ace_demo.gif)](https://share.streamlit.io/treuille/streamlit-ace/demo/)

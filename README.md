@@ -1,3 +1,5 @@
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/treuille/streamlit-ace/demo/)
+
 # Streamlit Ace
 
 [React Ace](https://github.com/securingsincity/react-ace) component for [Streamlit](https://www.streamlit.io/).
@@ -12,10 +14,6 @@ pip install streamlit-ace
 
 ## Demo
 
-To test this component, you can run the demo script:
+To test see the live demo, [click here](https://share.streamlit.io/treuille/streamlit-ace/demo/).
 
-```sh
-streamlit run https://raw.githubusercontent.com/okld/streamlit-ace/master/examples/streamlit_ace_demo.py
-```
-
-![Demo](https://raw.githubusercontent.com/okld/streamlit-ace/master/examples/streamlit_ace_demo.gif)
+[![Demo Image](https://raw.githubusercontent.com/okld/streamlit-ace/master/examples/streamlit_ace_demo.gif)](https://share.streamlit.io/treuille/streamlit-ace/demo/)

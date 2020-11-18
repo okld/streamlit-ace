@@ -16,4 +16,4 @@ pip install streamlit-ace
 
 To test see the live demo, [click here](https://share.streamlit.io/treuille/streamlit-ace/demo/).
 
-[![Demo Image](https://raw.githubusercontent.com/okld/streamlit-ace/master/examples/streamlit_ace_demo.gif)](https://share.streamlit.io/treuille/streamlit-ace/demo/)
+[![Demo Image](https://raw.githubusercontent.com/okld/streamlit-ace/master/demo/streamlit_ace_demo.gif)](https://share.streamlit.io/treuille/streamlit-ace/demo/)

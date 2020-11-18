@@ -1,19 +1,32 @@
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/treuille/streamlit-ace/demo/)
+# Streamlit Ace [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/okld/streamlit-ace/demo/)
 
-# Streamlit Ace
+[Ace editor](https://ace.c9.io/) component for [Streamlit](https://www.streamlit.io/).
 
-[React Ace](https://github.com/securingsincity/react-ace) component for [Streamlit](https://www.streamlit.io/).
+Implemented with [React ace](https://github.com/securingsincity/react-ace).
 
-## Installation
+## Getting started 
 
-In a python virtual environment, run:
+### Installation
 
 ```sh
 pip install streamlit-ace
 ```
 
+### Quick usage
+
+```python
+import streamlit as st
+import streamlit_ace as st_ace
+
+# Spawn a new Ace editor
+content = st_ace()
+
+# Display editor's content as you type
+content
+```
+
 ## Demo
 
-To test see the live demo, [click here](https://share.streamlit.io/treuille/streamlit-ace/demo/).
+You can access the demo app [here](https://share.streamlit.io/okld/streamlit-ace/demo/), and its source code [there](https://github.com/okld/streamlit-ace/blob/master/demo/streamlit_app.py).
 
-[![Demo Image](https://raw.githubusercontent.com/okld/streamlit-ace/master/demo/streamlit_ace_demo.gif)](https://share.streamlit.io/treuille/streamlit-ace/demo/)
+[![Demo Image](https://raw.githubusercontent.com/okld/streamlit-ace/master/demo/streamlit_ace_demo.gif)](https://share.streamlit.io/okld/streamlit-ace/demo/)

@@ -16,7 +16,7 @@ pip install streamlit-ace
 
 ```python
 import streamlit as st
-import streamlit_ace as st_ace
+from streamlit_ace import st_ace
 
 # Spawn a new Ace editor
 content = st_ace()

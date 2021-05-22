@@ -1,21 +1,18 @@
-# Streamlit Ace [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/okld/streamlit-ace/demo/)
+# 📝 Streamlit Ace
 
-[Ace editor](https://ace.c9.io/) component for [Streamlit](https://www.streamlit.io/).
+[![GitHub][github_badge]][github_link] [![PyPI][pypi_badge]][pypi_link] 
 
-Implemented with [React ace](https://github.com/securingsincity/react-ace).
-
-## Getting started 
-
-### Installation
+## Installation
 
 ```sh
 pip install streamlit-ace
 ```
 
-### Quick usage
+## Getting started
 
 ```python
 import streamlit as st
+
 from streamlit_ace import st_ace
 
 # Spawn a new Ace editor
@@ -27,6 +24,13 @@ content
 
 ## Demo
 
-You can access the demo app [here](https://share.streamlit.io/okld/streamlit-ace/demo/), and its source code [there](https://github.com/okld/streamlit-ace/blob/master/demo/streamlit_app.py).
+[![Open in Streamlit][share_badge]][share_link] 
 
-[![Demo Image](https://raw.githubusercontent.com/okld/streamlit-ace/master/demo/streamlit_ace_demo.gif)](https://share.streamlit.io/okld/streamlit-ace/demo/)
+[share_badge]: https://static.streamlit.io/badges/streamlit_badge_black_white.svg
+[share_link]: https://share.streamlit.io/okld/streamlit-gallery/main?p=ace-editor
+
+[github_badge]: https://badgen.net/badge/icon/GitHub?icon=github&color=black&label
+[github_link]: https://github.com/okld/streamlit-ace
+
+[pypi_badge]: https://badgen.net/pypi/v/streamlit-ace?icon=pypi&color=black&label
+[pypi_link]: https://pypi.org/project/streamlit-ace

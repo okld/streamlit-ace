@@ -26,8 +26,11 @@ content
 
 [![Open in Streamlit][share_badge]][share_link] 
 
+[![Preview][share_img]][share_link]
+
 [share_badge]: https://static.streamlit.io/badges/streamlit_badge_black_white.svg
 [share_link]: https://share.streamlit.io/okld/streamlit-gallery/main?p=ace-editor
+[share_img]: https://raw.githubusercontent.com/okld/streamlit-ace/main/preview.png
 
 [github_badge]: https://badgen.net/badge/icon/GitHub?icon=github&color=black&label
 [github_link]: https://github.com/okld/streamlit-ace

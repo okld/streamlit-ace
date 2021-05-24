@@ -1,26 +1,63 @@
-import os
-import streamlit.components.v1 as components
+import streamlit as st
 
-_RELEASE = True
+from pathlib import Path
+from streamlit.components.v1.components import declare_component
+from streamlit_ace.version import __release__, __version__
 
-if not _RELEASE:
-    _ace = components.declare_component("ace", url="http://localhost:3001")
+if __release__:
+    _source = {"path": (Path(__file__).parent/"frontend"/"build").resolve()}
 else:
-    parent_dir = os.path.dirname(os.path.abspath(__file__))
-    build_dir = os.path.join(parent_dir, "frontend/build")
-    _ace = components.declare_component("ace", path=build_dir)
+    _source = {"url": "http://localhost:3001"}
+
+_render_component = declare_component("streamlit_ace", **_source)
+
+# Source: https://github.com/ajaxorg/ace-builds/tree/master/src/mode-*.js
+LANGUAGES = [
+    "abap", "abc", "actionscript", "ada", "alda", "apache_conf", "apex", "applescript", "aql", 
+    "asciidoc", "asl", "assembly_x86", "autohotkey", "batchfile", "c9search", "c_cpp", "cirru", 
+    "clojure", "cobol", "coffee", "coldfusion", "crystal", "csharp", "csound_document", "csound_orchestra", 
+    "csound_score", "csp", "css", "curly", "d", "dart", "diff", "django", "dockerfile", "dot", "drools", 
+    "edifact", "eiffel", "ejs", "elixir", "elm", "erlang", "forth", "fortran", "fsharp", "fsl", "ftl", 
+    "gcode", "gherkin", "gitignore", "glsl", "gobstones", "golang", "graphqlschema", "groovy", "haml", 
+    "handlebars", "haskell", "haskell_cabal", "haxe", "hjson", "html", "html_elixir", "html_ruby", "ini", 
+    "io", "jack", "jade", "java", "javascript", "json", "json5", "jsoniq", "jsp", "jssm", "jsx", "julia", 
+    "kotlin", "latex", "less", "liquid", "lisp", "livescript", "logiql", "logtalk", "lsl", "lua", "luapage", 
+    "lucene", "makefile", "markdown", "mask", "matlab", "maze", "mediawiki", "mel", "mixal", "mushcode", 
+    "mysql", "nginx", "nim", "nix", "nsis", "nunjucks", "objectivec", "ocaml", "pascal", "perl", "perl6", 
+    "pgsql", "php", "php_laravel_blade", "pig", "plain_text", "powershell", "praat", "prisma", "prolog", 
+    "properties", "protobuf", "puppet", "python", "qml", "r", "razor", "rdoc", "red", "redshift", "rhtml", 
+    "rst", "ruby", "rust", "sass", "scad", "scala", "scheme", "scss", "sh", "sjs", "slim", "smarty", 
+    "snippets", "soy_template", "space", "sparql", "sql", "sqlserver", "stylus", "svg", "swift", "tcl", 
+    "terraform", "tex", "text", "textile", "toml", "tsx", "turtle", "twig", "typescript", "vala", "vbscript", 
+    "velocity", "verilog", "vhdl", "visualforce", "wollok", "xml", "xquery", "yaml"
+]
+
+# Source: https://github.com/ajaxorg/ace-builds/tree/master/src/theme-*.js
+THEMES = [
+    "ambiance", "chaos", "chrome", "clouds", "clouds_midnight", "cobalt", "crimson_editor", "dawn",
+    "dracula", "dreamweaver", "eclipse", "github", "gob", "gruvbox", "idle_fingers", "iplastic",
+    "katzenmilch", "kr_theme", "kuroir", "merbivore", "merbivore_soft", "mono_industrial", "monokai",
+    "nord_dark", "pastel_on_dark", "solarized_dark", "solarized_light", "sqlserver", "terminal",
+    "textmate", "tomorrow", "tomorrow_night", "tomorrow_night_blue", "tomorrow_night_bright",
+    "tomorrow_night_eighties", "twilight", "vibrant_ink", "xcode"
+]
+
+# Source: https://github.com/ajaxorg/ace-builds/tree/master/src/keybinding-*.js
+KEYBINDINGS = [
+    "emacs", "sublime", "vim", "vscode"
+]
 
 
 def st_ace(
     value="",
     placeholder="",
-    height=500,
+    height=None,
     language="plain_text",
     theme="chrome",
     keybinding="vscode",
-    min_lines=None,
+    min_lines=12,
     max_lines=None,
-    font_size=12,
+    font_size=14,
     tab_size=4,
     wrap=False,
     show_gutter=True,
@@ -28,64 +65,59 @@ def st_ace(
     readonly=False,
     annotations=None,
     markers=None,
-    auto_update=True,
+    auto_update=False,
     key=None
 ):
     """Display an Ace editor.
 
-    This component relies internally on React-Ace. 
-    
-    You can find the list of available keybindings, languages and themes here:
-    https://github.com/ajaxorg/ace-builds/tree/2ea299a2bee97fdf58fc90cb76eec6c45535a63f/src
-
-    - keybinding-[keybinding].js
-    - mode-[language].js
-    - theme-[theme].js
-
-    If you want to display a new instance of Ace, you need to set a custom
-    key value.
-
     Parameters
     ----------
     value : any
-        The text value of this widget when it first renders. This will be
-        cast to str internally.
+        The text value of this widget when it first renders.
+        Empty string by default.
     placeholder : any
-        The text value of this widget when the editor is empty. It will be
-        cast to str internally.
+        The text value of this widget when the editor is empty.
+        Empty string by default.
     height : int or None
-        Desired height of the UI element expressed in pixels. If None, a
-        default height is used.
+        Desired height of the UI element expressed in pixels.
+        If set to None, height will auto adjust to editor's content.
+        None by default.
     language : str or None
         Language for parsing and code highlighting. If None, the editor
         will not highlight content.
-    keybinding : str
-        Keybinding mode set.
+        Available languages are defined in streamlit_ace.LANGUAGES.
+        Plain text by default.
     theme : str or None
         The theme to use. If None, a default theme is used.
+        Available themes are defined in streamlit_ace.THEMES.
+        Chrome by default.
+    keybinding : str
+        Keybinding mode set.
+        Available keybindings are defined in streamlit_ace.KEYBINDINGS.
+        Vscode by default.
     min_lines : int or None
-        Minimum number of lines allowed in editor.
+        Minimum number of lines allowed in editor. 12 by default.
     max_lines : int or None
-        Maximum number of lines allowed in editor.
+        Maximum number of lines allowed in editor. None by default.
     font_size : int or None
-        The font size of the enditor. If None, a default size is used.
+        The font size of the enditor. 14 by default.
     tab_size : int or None
-        The size of a tabulation. If None, a default value is used.
+        The size of a tabulation. 4 by default.
     show_gutter : bool
-        Show or hide gutter. If None, a default value is used.
+        Show or hide gutter. True by default.
     show_print_margin : bool
-        Show or hide print margin. If None, a default value is used.
+        Show or hide print margin. False by default
     wrap : bool
-        Enable line wrapping. If None, a default value is used.
+        Enable line wrapping. False by default.
     readonly : bool
-        Make the editor read only.
+        Make the editor read only. False by default.
     annotations : list or None
-        Anootations to show in the editor.
+        Anootations to show in the editor. None by default.
     markers : list or None
-        Markers to show in the editor.
+        Markers to show in the editor. None by default.
     auto_update : bool
         Choose whether Streamlit auto updates on input change, or waits
-        for user validation.
+        for user validation. False by default.
     key : str
         An optional string to use as the unique key for the widget.
         If this is omitted, a key will be generated for the widget
@@ -96,14 +128,8 @@ def st_ace(
     -------
     str
         The current content of the ace editor widget.
-
     """
-    if annotations is None:
-        annotations = []
-    if markers is None:
-        markers = []
-
-    return _ace(
+    return _render_component(
         defaultValue=str(value),
         placeholder=str(placeholder),
         height=height,
@@ -118,65 +144,9 @@ def st_ace(
         wrapEnabled=wrap,
         readOnly=readonly,
         keyboardHandler=keybinding,
-        annotations=annotations,
-        markers=markers,
+        annotations=annotations or [],
+        markers=markers or [],
         autoUpdate=auto_update,
         key=key,
         default=str(value),
     )
-
-
-if not _RELEASE:
-    import streamlit as st
-
-    LANGUAGES = [
-        "abap", "abc", "actionscript", "ada", "alda", "apache_conf", "apex", "applescript", "aql", 
-        "asciidoc", "asl", "assembly_x86", "autohotkey", "batchfile", "c9search", "c_cpp", "cirru", 
-        "clojure", "cobol", "coffee", "coldfusion", "crystal", "csharp", "csound_document", "csound_orchestra", 
-        "csound_score", "csp", "css", "curly", "d", "dart", "diff", "django", "dockerfile", "dot", "drools", 
-        "edifact", "eiffel", "ejs", "elixir", "elm", "erlang", "forth", "fortran", "fsharp", "fsl", "ftl", 
-        "gcode", "gherkin", "gitignore", "glsl", "gobstones", "golang", "graphqlschema", "groovy", "haml", 
-        "handlebars", "haskell", "haskell_cabal", "haxe", "hjson", "html", "html_elixir", "html_ruby", "ini", 
-        "io", "jack", "jade", "java", "javascript", "json", "json5", "jsoniq", "jsp", "jssm", "jsx", "julia", 
-        "kotlin", "latex", "less", "liquid", "lisp", "livescript", "logiql", "logtalk", "lsl", "lua", "luapage", 
-        "lucene", "makefile", "markdown", "mask", "matlab", "maze", "mediawiki", "mel", "mixal", "mushcode", 
-        "mysql", "nginx", "nim", "nix", "nsis", "nunjucks", "objectivec", "ocaml", "pascal", "perl", "perl6", 
-        "pgsql", "php", "php_laravel_blade", "pig", "plain_text", "powershell", "praat", "prisma", "prolog", 
-        "properties", "protobuf", "puppet", "python", "qml", "r", "razor", "rdoc", "red", "redshift", "rhtml", 
-        "rst", "ruby", "rust", "sass", "scad", "scala", "scheme", "scss", "sh", "sjs", "slim", "smarty", 
-        "snippets", "soy_template", "space", "sparql", "sql", "sqlserver", "stylus", "svg", "swift", "tcl", 
-        "terraform", "tex", "text", "textile", "toml", "tsx", "turtle", "twig", "typescript", "vala", "vbscript", 
-        "velocity", "verilog", "vhdl", "visualforce", "wollok", "xml", "xquery", "yaml"
-    ]
-
-    THEMES = [
-        "ambiance", "chaos", "chrome", "clouds", "clouds_midnight", "cobalt", "crimson_editor", "dawn",
-        "dracula", "dreamweaver", "eclipse", "github", "gob", "gruvbox", "idle_fingers", "iplastic",
-        "katzenmilch", "kr_theme", "kuroir", "merbivore", "merbivore_soft", "mono_industrial", "monokai",
-        "nord_dark", "pastel_on_dark", "solarized_dark", "solarized_light", "sqlserver", "terminal",
-        "textmate", "tomorrow", "tomorrow_night", "tomorrow_night_blue", "tomorrow_night_bright",
-        "tomorrow_night_eighties", "twilight", "vibrant_ink", "xcode"
-    ]
-
-    KEYBINDINGS = [
-        "emacs", "sublime", "vim", "vscode"
-    ]
-
-    st.sidebar.title(":memo: Ace editor")
-
-    content = st_ace(
-        placeholder=st.sidebar.text_input("Editor placeholder", value="Some placeholder."),
-        language=st.sidebar.selectbox("Language mode", options=LANGUAGES, index=121),
-        theme=st.sidebar.selectbox("Theme", options=THEMES, index=31),
-        keybinding=st.sidebar.selectbox("Keybinding mode", options=KEYBINDINGS, index=3),
-        font_size=st.sidebar.slider("Font size", 5, 24, 12),
-        tab_size=st.sidebar.slider("Tab size", 1, 8, 4),
-        show_gutter=st.sidebar.checkbox("Show gutter", value=True),
-        show_print_margin=st.sidebar.checkbox("Show print margin", value=True),
-        wrap=st.sidebar.checkbox("Wrap enabled", value=False),
-        auto_update=st.sidebar.checkbox("Auto update", value=False),
-        readonly=st.sidebar.checkbox("Read-only", value=False, key="ace-editor"),
-        key="ace-editor"
-    )
-
-    st.write(content)

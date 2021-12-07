@@ -8,7 +8,7 @@ import {
 import AceEditor from "react-ace"
 import { IAceEditor } from "react-ace/lib/types"
 import { Paper, Button, Grid } from "@material-ui/core"
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
+import { MuiThemeProvider, createTheme } from "@material-ui/core/styles"
 
 import "ace-builds/webpack-resolver"
 import "ace-builds/src-min-noconflict/ext-emmet"
@@ -39,14 +39,14 @@ const Ace = ({ args, theme }: AceProps) => {
 
     timeout = setTimeout(() => {
       if (args.autoUpdate) {
-        updateStreamlit(value)      
+        updateStreamlit(value)
       }
       else {
         setChanged(true)
       }
     }, debounceRef.current)
   }
-  
+
   // Update content keybinding
   useEffect(() => {
     if (editorRef.current) {
@@ -114,12 +114,12 @@ const Ace = ({ args, theme }: AceProps) => {
 
   return (
     <div ref={observeElement}>
-      <MuiThemeProvider theme={createMuiTheme(colors)}>
+      <MuiThemeProvider theme={createTheme(colors)}>
         <Paper>
           <AceEditor ref={editorRef} {...args} />
         </Paper>
         { args.autoUpdate ? null :
-          <Grid container justify="flex-end">
+          <Grid container justifyContent="flex-end">
             <Button
               variant="contained"
               color="primary"

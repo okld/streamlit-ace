@@ -66,6 +66,8 @@ def st_ace(
     annotations=None,
     markers=None,
     auto_update=False,
+    enable_basic_autocompletion=True,
+    enable_live_autocompletion=True,
     key=None
 ):
     """Display an Ace editor.
@@ -118,6 +120,10 @@ def st_ace(
     auto_update : bool
         Choose whether Streamlit auto updates on input change, or waits
         for user validation. False by default.
+    enable_basic_autocompletion : bool
+        Enable autocompletion pop-up upon pressing ctrl+space. True by default.
+    enable_live_autocompletion : bool
+        Enable automatic autocompletion pop-up. True by default.
     key : str
         An optional string to use as the unique key for the widget.
         If this is omitted, a key will be generated for the widget
@@ -147,6 +153,8 @@ def st_ace(
         annotations=annotations or [],
         markers=markers or [],
         autoUpdate=auto_update,
+        enableBasicAutocompletion=enable_basic_autocompletion,
+        enableLiveAutocompletion=enable_live_autocompletion,
         key=key,
         default=str(value),
     )

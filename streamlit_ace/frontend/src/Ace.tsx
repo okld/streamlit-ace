@@ -91,8 +91,6 @@ const Ace = ({ args, theme }: AceProps) => {
 
 
   // Set default prop values that shouldn't be exposed to python
-  args.enableBasicAutocompletion = true
-  args.enableLiveAutocompletion = true
   args.onChange = handleChange
   args.width = "100%"
 
